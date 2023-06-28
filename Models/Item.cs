@@ -1,5 +1,5 @@
 using System;
-namespace MyApi.Models
+namespace dotNetAPI.Models
 {
     public class Item
     {
