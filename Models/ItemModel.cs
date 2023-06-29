@@ -1,7 +1,7 @@
 using System;
 namespace dotNetAPI.Models
 {
-    public class Item
+    public class ItemModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

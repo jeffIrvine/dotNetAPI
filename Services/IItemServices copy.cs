@@ -2,10 +2,10 @@ using dotNetAPI.Models;
 
 public interface IItemService
 {
-    Task<IEnumerable<Item>> GetAllItems();
-    Task<Item> GetItem(Guid id);
-    Task<Item> CreateItem(Item item);
-    Task UpdateItem(Item item);
+    Task<IEnumerable<ItemModel>> GetAllItems();
+    Task<ItemModel> GetItem(Guid id);
+    Task<ItemModel> CreateItem(ItemModel item);
+    Task UpdateItem(ItemModel item);
     Task<Boolean> ItemExists(Guid id);
     Task DeleteItem(Guid id);
 }

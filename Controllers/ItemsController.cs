@@ -16,7 +16,7 @@ namespace dotNetAPI.Controllers
 
         // GET: api/v1/Items
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
+        public async Task<ActionResult<IEnumerable<ItemModel>>> GetItems()
         {
             var items = await _itemService.GetAllItems();
             return Ok(items);
@@ -24,7 +24,7 @@ namespace dotNetAPI.Controllers
 
         // GET: api/v1/Items/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItem(Guid id)
+        public async Task<ActionResult<ItemModel>> GetItem(Guid id)
         {
             var item = await _itemService.GetItem(id);
 
@@ -38,7 +38,7 @@ namespace dotNetAPI.Controllers
 
         // PUT: api/v1/Items/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutItem(Guid id, Item item)
+        public async Task<IActionResult> PutItem(Guid id, ItemModel item)
         {
             if (id != item.Id)
             {
@@ -66,7 +66,7 @@ namespace dotNetAPI.Controllers
 
         // POST: api/v1/Items
         [HttpPost]
-        public async Task<ActionResult<Item>> PostItem(Item item)
+        public async Task<ActionResult<ItemModel>> PostItem(ItemModel item)
         {
             await _itemService.CreateItem(item);
             return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item);
@@ -74,7 +74,7 @@ namespace dotNetAPI.Controllers
 
         // DELETE: api/v1/Items/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Item>> DeleteItem(Guid id)
+        public async Task<ActionResult<ItemModel>> DeleteItem(Guid id)
         {
             var item = await _itemService.GetItem(id);
             if (item == null)

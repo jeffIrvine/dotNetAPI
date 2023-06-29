@@ -3,32 +3,32 @@ using dotNetAPI.Models;
 
 public class ItemService : IItemService
 {
-    private readonly IMongoCollection<Item> _items;
+    private readonly IMongoCollection<ItemModel> _items;
 
     public ItemService(MongoDBContext context)
     {
         _items = context.Items;
     }
 
-    public async Task<IEnumerable<Item>> GetAllItems()
+    public async Task<IEnumerable<ItemModel>> GetAllItems()
     {
         return await _items.Find(item => true).ToListAsync();
     }
 
-    public async Task<Item> GetItem(Guid id)
+    public async Task<ItemModel> GetItem(Guid id)
     {
-        return await _items.Find<Item>(item => item.Id == id).FirstOrDefaultAsync();
+        return await _items.Find<ItemModel>(item => item.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Item> CreateItem(Item item)
+    public async Task<ItemModel> CreateItem(ItemModel item)
     {
         await _items.InsertOneAsync(item);
         return item;
     }
 
-    public async Task UpdateItem(Item itemIn)
+    public async Task UpdateItem(ItemModel item)
     {
-        await _items.ReplaceOneAsync(item => item.Id == itemIn.Id, itemIn);
+        await _items.ReplaceOneAsync(item => item.Id == item.Id, item);
     }
 
         public async Task<bool> ItemExists(Guid id)

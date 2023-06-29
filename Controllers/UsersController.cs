@@ -15,7 +15,7 @@ namespace dotNetAPI.Controllers
 
         // GET: api/v1/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserModel>>> GetUsers()
         {
             var users = await _userService.GetAllUsers();
             return Ok(users);
@@ -23,7 +23,7 @@ namespace dotNetAPI.Controllers
 
         // GET: api/v1/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(Guid id)
+        public async Task<ActionResult<UserModel>> GetUser(Guid id)
         {
             var user = await _userService.GetUser(id);
 
@@ -37,7 +37,7 @@ namespace dotNetAPI.Controllers
 
         // PUT: api/v1/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, User user)
+        public async Task<IActionResult> PutUser(Guid id, UserModel user)
         {
             if (id != user.Id)
             {
@@ -65,7 +65,7 @@ namespace dotNetAPI.Controllers
 
         // POST: api/v1/Users
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<UserModel>> PostUser(UserModel user)
         {
             await _userService.CreateUser(user);
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
