@@ -16,7 +16,8 @@ POST / user;
 {
   "Id": "Guid",
   "TrailName": "String",
-  "Email": "String"
+  "Email": "String",
+  "Items": "List<ItemModel>"
 }
 ```
 
@@ -33,7 +34,7 @@ POST / item;
   "Category": "String",
   "Description": "String",
   "Price": "Decimal",
-  "Qty": "Int",
+  "Quantity": "Int",
   "Weight": "Decimal",
   "Worn": "Boolean",
   "Consumable": "Boolean",
