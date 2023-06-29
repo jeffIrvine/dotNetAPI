@@ -1,11 +1,12 @@
 using MongoDB.Driver;
 using dotNetAPI.Models;
+using dotNetAPI.Services;
 
 public class UserService : IUserService
 {
     private readonly IMongoCollection<UserModel> _users;
 
-    public UserService(MongoDBContext context)
+    public UserService(IMongoDBContext context)
     {
         _users = context.Users;
     }

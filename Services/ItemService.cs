@@ -1,11 +1,12 @@
 using MongoDB.Driver;
 using dotNetAPI.Models;
+using dotNetAPI.Services;
 
 public class ItemService : IItemService
 {
     private readonly IMongoCollection<ItemModel> _items;
 
-    public ItemService(MongoDBContext context)
+    public ItemService(IMongoDBContext context)
     {
         _items = context.Items;
     }
