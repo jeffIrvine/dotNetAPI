@@ -29,7 +29,8 @@ public class UserService : IUserService
 
     public async Task UpdateUser(UserModel user)
     {
-        await _users.ReplaceOneAsync(user => user.Id == user.Id, user);
+        var filter = Builders<UserModel>.Filter.Eq(u => u.Id, user.Id);
+        await _users.ReplaceOneAsync(filter, user);
     }
 
     public async Task<bool> UserExists(Guid id)
