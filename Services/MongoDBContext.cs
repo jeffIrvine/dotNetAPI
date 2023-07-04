@@ -2,9 +2,9 @@ using MongoDB.Driver;
 using dotNetAPI.Models;
 using MongoDB.Bson;
 using Microsoft.Extensions.Configuration;
+using dotNetAPI.Services;
 
-
-public class MongoDBContext
+public class MongoDBContext : IMongoDBContext
 {
     private readonly IMongoDatabase _db;
 

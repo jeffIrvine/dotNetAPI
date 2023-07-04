@@ -37,31 +37,38 @@ namespace dotNetAPI.Controllers
 
         // PUT: api/v1/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, UserModel user)
+public async Task<IActionResult> PutUser(Guid id, UserModel userRequest)
+{
+    var user = await _userService.GetUser(id);
+
+    if (user == null || user.Id != userRequest.Id)
+    {
+        return BadRequest();
+    }
+
+    // Copy the fields from userRequest to user
+    user.TrailName = userRequest.TrailName;
+    user.Email = userRequest.Email;
+    // and so on for other fields...
+
+    try
+    {
+        await _userService.UpdateUser(user);
+    }
+    catch
+    {
+        if (!await _userService.UserExists(id))
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                await _userService.UpdateUser(user);
-            }
-            catch
-            {
-                if (!await _userService.UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
+        else
+        {
+            throw;
+        }
+    }
+
+    return NoContent();
+}
 
         // POST: api/v1/Users
         [HttpPost]
