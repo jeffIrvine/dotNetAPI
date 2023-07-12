@@ -47,7 +47,7 @@ namespace dotNetAPI.Controllers
 
             try
             {
-                await _itemService.UpdateItem(item);
+                await _itemService.UpdateItem(id, item);
             }
             catch 
             {
