@@ -27,9 +27,9 @@ public class ItemService : IItemService
         return item;
     }
 
-    public async Task UpdateItem(ItemModel item)
+    public async Task UpdateItem(Guid id, ItemModel item)
     {
-        await _items.ReplaceOneAsync(item => item.Id == item.Id, item);
+        await _items.ReplaceOneAsync(item => item.Id == id, item);
     }
 
         public async Task<bool> ItemExists(Guid id)
